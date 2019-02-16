@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>House - Party Loyalty - TGIF</title>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
+    integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/css/bootstrap.min.css"
+    integrity="sha384-PDle/QlgIONtM1aqA2Qemk5gPOE7wFq8+Em+G/hmo5Iq0CCmYZLv3fVRDJ4MMwEA" crossorigin="anonymous">
+  <link rel="stylesheet" href="assets/stylesheets/main.css">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+  <div class="container mt-5">
+    <header>
+      <div class="d-flex justify-content-between align-items-end mb-3">
+        <div class="d-flex align-items-center">
+          <img class="mb-2 mr-2" src="assets/images/logo.svg" alt="TGIF Logo" width="40">
+          <h1>TGIF</h1>
+        </div>
+        <div>
+          <i class="far fa-envelope"></i>
+          <a class="email" href="mailto:info@tgif.net">info@tgif.net</a>
+        </div>
+      </div>
+
+      <nav>
+        <ul class="d-flex p-0 mb-0 ml-4">
+          <li><a href="index.html">Home</a></li>
+          <li><a type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Congress 113
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenu">
+              <a class="dropdown-item" href="congress-senate.html">Senate</a>
+              <a class="dropdown-item" href="congress-house.html">House</a>
+            </div>
+          </li>
+          <li><a type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Attendance
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+              <a class="dropdown-item" href="attendance-senate.html">Senate</a>
+              <a class="dropdown-item" href="attendance-house.html">House</a>
+            </div>
+          </li>
+          <li><a type="button" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Party Loyalty
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenu3">
+              <a class="dropdown-item" href="party-loyalty-senate.html">Senate</a>
+              <a class="dropdown-item" href="party-loyalty-house.html">House</a>
+            </div>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <section class="content" id="app">
+      <div class="row">
+
+        <div class="col mr-5">
+          <h2>Party Loyalty</h2>
+          <p>
+            Those who consider themselves to be strong partisans, strong Democrats and strong Republicans respectively,
+            tend
+            to be the most faithful in voting for their party's nominee for office and legislation that backs their
+            party's
+            agenda.
+          </p>
+        </div>
+
+        <div class="col ml-5">
+          <h2 class="text-right">House at a glance</h2>
+          <div v-if="loadingData">Loading... Please, wait.</div>
+          <table v-else class="table">
+            <thead>
+              <tr>
+                <th>Party</th>
+                <th>Number of Reps</th>
+                <th>% Voted with Prty</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Democrats</td>
+                <td>{{ stats.democrats.total }}</td>
+                <td>{{ roundIfNecessary(stats.democrats.partyPct) + '%' }}</td>
+              </tr>
+              <tr>
+                <td>Republicans</td>
+                <td>{{ stats.republicans.total }}</td>
+                <td>{{ roundIfNecessary(stats.republicans.partyPct) + '%' }}</td>
+              </tr>
+              <tr>
+                <td>Independents</td>
+                <td>{{ stats.independents.total }}</td>
+                <td>{{ roundIfNecessary(stats.independents.partyPct) + '%' }}</td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td>Total</td>
+                <td>{{ totalMembers }}</td>
+                <td>{{ roundIfNecessary(averagePercentage) + '%' }}</td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+
+      </div>
+      <hr>
+      <div class="row">
+
+        <div class="col mr-5">
+          <h2>Least Loyal (Bottom 10% of Party)</h2>
+          <div v-if="loadingData">Loading... Please, wait.</div>
+          <table v-else class="table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Number Party Votes</th>
+                <th>% Party Votes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="value in stats.leastLoyal">
+                <td>
+                  <a :href="value.url">
+                    {{ fullName(value) }}
+                  </a>
+                </td>
+                <td>{{ votesWithParty(value) }}</td>
+                <td>{{ value.votes_with_party_pct + '%' }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="col ml-5">
+          <h2>Most Loyal (Top 10% of Party)</h2>
+          <div v-if="loadingData">Loading... Please, wait.</div>
+          <table v-else class="table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Number Party Votes</th>
+                <th>% Party Votes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="value in stats.mostLoyal">
+                <td>
+                  <a :href="value.url">
+                    {{ fullName(value) }}
+                  </a>
+                </td>
+                <td>{{ votesWithParty(value) }}</td>
+                <td>{{ value.votes_with_party_pct + '%' }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </section>
+
+    <footer class="text-center my-3 py-3">
+      © 2016 TGIF | All Rights Reserved
+    </footer>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/js/bootstrap.min.js"
+    integrity="sha384-7aThvCh9TypR7fIc2HV4O/nFMVCBwyIUKL8XCtKE+8xgCgl/PQGuFsvShjr74PBp"
+    crossorigin="anonymous"></script>
+  <script src="assets/scripts/data-loader.js"></script>
+  <script src="assets/scripts/house-data-loader.js"></script>
+  <script src="assets/scripts/calc-stats.js"></script>
+  <script src="assets/scripts/display-stats.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,85 @@
+html {
+  --menu-item-background-color: #ededed;
+  --menu-item-hover-background-color: #cbcbcb;
+  --menu-item-color: #007bff;
+  --menu-item-hover-color: #525252;
+}
+
+nav {
+  background: var(--menu-item-background-color);
+  border: 3px solid grey;
+  color: var(--menu-item-color);
+}
+
+nav ul {
+  list-style-type: none;
+}
+
+nav a {
+  display: block;
+  padding: 15px;
+}
+
+nav a:hover {
+  color: var(--menu-item-hover-color);
+  background: var(--menu-item-hover-background-color);
+  text-decoration: none;
+}
+
+.email {
+  text-decoration: underline;
+}
+
+.content {
+  margin-top: 75px;
+  margin-left: 10px;
+}
+
+h2 {
+  font-size: 1.6rem;
+}
+
+p {
+  text-indent: 25px;
+}
+
+label {
+  margin-bottom: 0;
+}
+
+input[type="checkbox"] {
+  margin: 0 10px;
+}
+
+footer {
+  background: var(--menu-item-background-color);
+  border: 3px solid grey;
+}
+
+.side-image {
+  float: right;
+  margin-top: 100px;
+  margin-right: 75px;
+}
+
+.dropdown-menu {
+  border: 3px solid grey;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.dropdown-item:hover { 
+  background: var(--menu-item-hover-background-color);
+}
+/* Sobreescribir propiedad Bootstrap */
+a:not([href]):not([tabindex]):hover {
+  color: var(--menu-item-hover-color);
+}
+/* Sobreescribir propiedad Bootstrap */
+[type=button] {
+  -webkit-appearance: none;
+}
+
+hr {
+  border-top: 2px solid grey;
+}

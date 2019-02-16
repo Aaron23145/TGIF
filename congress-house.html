@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>House - Congress 113 - TGIF</title>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
+    integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/css/bootstrap.min.css"
+    integrity="sha384-PDle/QlgIONtM1aqA2Qemk5gPOE7wFq8+Em+G/hmo5Iq0CCmYZLv3fVRDJ4MMwEA" crossorigin="anonymous">
+  <link rel="stylesheet" href="assets/stylesheets/main.css">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+  <div class="container mt-5">
+    <header>
+      <div class="d-flex justify-content-between align-items-end mb-3">
+        <div class="d-flex align-items-center">
+          <img class="mb-2 mr-2" src="assets/images/logo.svg" alt="TGIF Logo" width="40">
+          <h1>TGIF</h1>
+        </div>
+        <div>
+          <i class="far fa-envelope"></i>
+          <a class="email" href="mailto:info@tgif.net">info@tgif.net</a>
+        </div>
+      </div>
+
+      <nav>
+        <ul class="d-flex p-0 mb-0 ml-4">
+          <li><a href="index.html">Home</a></li>
+          <li><a type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Congress 113
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenu">
+              <a class="dropdown-item" href="congress-senate.html">Senate</a>
+              <a class="dropdown-item" href="congress-house.html">House</a>
+            </div>
+          </li>
+          <li><a type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Attendance
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+              <a class="dropdown-item" href="attendance-senate.html">Senate</a>
+              <a class="dropdown-item" href="attendance-house.html">House</a>
+            </div>
+          </li>
+          <li><a type="button" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Party Loyalty
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenu3">
+              <a class="dropdown-item" href="party-loyalty-senate.html">Senate</a>
+              <a class="dropdown-item" href="party-loyalty-house.html">House</a>
+            </div>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <section class="content" id="app">
+      <h2>Congressmen</h2>
+      <p>
+        The major power of the House is to pass federal legislation that affects the entire country, although its
+        bills must also be passed by the Senate and further agreed to by the U.S. President before becoming law
+        (unless both the House and Senate re-pass the legislation with a two-thirds majority in each chamber). The
+        House has some exclusive powers: the power to initiate revenue bills, to impeach officials (impeached
+        officials are subsequently tried in the Senate), and to elect the U.S. President in case there is no
+        majority in the Electoral College.
+      </p>
+      <p>
+        Each U.S. state is represented in the House in proportion to its population as measured in the census, but
+        every state is entitled to at least one representative.
+      </p>
+
+      <div class="d-flex align-items-center">
+        Filter by Party:
+        <input @change="updateTableData" v-model="partiesSelected" type="checkbox" id="republican-filter" value="R">
+        <label for="republican-filter">Republican</label>
+        <input @change="updateTableData" v-model="partiesSelected" type="checkbox" id="democrat-filter" value="D">
+        <label for="democrat-filter">Democrat</label>
+        <input @change="updateTableData" v-model="partiesSelected" type="checkbox" id="independent-filter" value="I">
+        <label for="independent-filter">Independent</label>
+        <div class="flex-grow-1 text-right">
+          Filter by State:
+          <select @change="updateTableData" v-model="stateSelected">
+            <option value="all">All</option>
+            <option value="nc">NC</option>
+            <option value="al">AL</option>
+            <option value="la">LA</option>
+            <option value="mi">MI</option>
+            <option value="nv">NV</option>
+            <option value="nj">NJ</option>
+            <option value="mn">MN</option>
+            <option value="az">AZ</option>
+            <option value="pa">PA</option>
+            <option value="ky">KY</option>
+            <option value="ga">GA</option>
+            <option value="tx">TX</option>
+            <option value="ca">CA</option>
+            <option value="oh">OH</option>
+            <option value="fl">FL</option>
+            <option value="ut">UT</option>
+            <option value="ny">NY</option>
+            <option value="tn">TN</option>
+            <option value="or">OR</option>
+            <option value="gu">GU</option>
+            <option value="ia">IA</option>
+            <option value="va">VA</option>
+            <option value="ok">OK</option>
+            <option value="in">IN</option>
+            <option value="il">IL</option>
+            <option value="wv">WV</option>
+            <option value="ma">MA</option>
+            <option value="de">DE</option>
+            <option value="vi">VI</option>
+            <option value="ri">RI</option>
+            <option value="mo">MO</option>
+            <option value="sc">SC</option>
+            <option value="co">CO</option>
+            <option value="ar">AR</option>
+            <option value="ct">CT</option>
+            <option value="nd">ND</option>
+            <option value="md">MD</option>
+            <option value="mt">MT</option>
+            <option value="wa">WA</option>
+            <option value="wi">WI</option>
+            <option value="as">AS</option>
+            <option value="ne">NE</option>
+            <option value="hi">HI</option>
+            <option value="ms">MS</option>
+            <option value="ks">KS</option>
+            <option value="nh">NH</option>
+            <option value="id">ID</option>
+            <option value="nm">NM</option>
+            <option value="wy">WY</option>
+            <option value="me">ME</option>
+            <option value="sd">SD</option>
+            <option value="dc">DC</option>
+            <option value="pr">PR</option>
+            <option value="mp">MP</option>
+            <option value="vt">VT</option>
+            <option value="ak">AK</option>"
+          </select>
+        </div>
+      </div>
+
+      <table v-if="members.length" class="table mt-3">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Party</th>
+            <th>State</th>
+            <th>Years in Office</th>
+            <th>% Votes w/ Party</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="value in members">
+            <td>
+              <a :href="value.url">
+                {{ fullName(value) }}
+              </a>
+            </td>
+            <td>{{ value.party }}</td>
+            <td>{{ value.state }}</td>
+            <td>{{ value.seniority }}</td>
+            <td>{{ value.votes_with_party_pct }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <div v-else-if="loadingData">Loading... Please, wait.</div>
+      <div v-else>There are no members that match the specified filter.</div>
+    </section>
+
+    <footer class="text-center my-3 py-3">
+      © 2016 TGIF | All Rights Reserved
+    </footer>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/js/bootstrap.min.js"
+    integrity="sha384-7aThvCh9TypR7fIc2HV4O/nFMVCBwyIUKL8XCtKE+8xgCgl/PQGuFsvShjr74PBp"
+    crossorigin="anonymous"></script>
+  <script src="assets/scripts/data-loader.js"></script>
+  <script src="assets/scripts/house-data-loader.js"></script>
+  <script src="assets/scripts/filter.js"></script>
+</body>
+
+</html>
