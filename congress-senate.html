@@ -155,7 +155,7 @@
         <tbody>
           <tr v-for="value in members">
             <td>
-              <a :href="value.url">
+              <a :href="value.url || '#'">
                 {{ fullName(value) }}
               </a>
             </td>
