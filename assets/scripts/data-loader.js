@@ -10,7 +10,7 @@ function requestData(type) {
       mode: 'cors',
     }).then(function (response) {
       if (response.status !== 200) {
-        throw new Error(`An error has ocurred while trying to fetch data from propublica: 404`);
+        throw new Error('An error has ocurred while trying to fetch data from propublica: 404');
       }
 
       response.json().then(function (responseData) {

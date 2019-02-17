@@ -35,7 +35,7 @@ const app = new Vue({
     averagePercentage: function () {
       return this.average(this.stats.democrats.partyPct,
         this.stats.republicans.partyPct,
-        this.stats.independents.partyPct)
+        this.stats.independents.partyPct);
     },
   },
 });

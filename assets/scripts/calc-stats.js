@@ -62,11 +62,7 @@ async function genStats() {
     }
 
     let percentage;
-    if (maximum) {
-      percentage = Math.max(...percentages);
-    } else {
-      percentage = Math.min(...percentages);
-    }
+    percentage = maximum ? Math.max(...percentages) : Math.min(...percentages);
     const filteredMembers = [];
 
     do {
@@ -82,11 +78,7 @@ async function genStats() {
         }
       }
 
-      if (maximum) {
-        percentage = Math.max(...percentages);
-      } else {
-        percentage = Math.min(...percentages);
-      }
+      percentage = maximum ? Math.max(...percentages) : Math.min(...percentages);
     } while (filteredMembers.length / members.length < 0.1);
 
     return filteredMembers;
