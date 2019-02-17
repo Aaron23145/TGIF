@@ -17,25 +17,26 @@ const app = new Vue({
       return `${member.first_name} ${member.middle_name || ''} ${member.last_name}`;
     },
     updateTableData: function () {
-      this.members = updateMembersList();
+      this.members = [];
     },
   },
 });
 
-genData().then(function () {
+congressRequest.requestData().then(function (data) {
+  app.updateTableData = function() {
+    app.members = updateMembersList(data);
+  };
   app.putData();
-}).catch(function (error) {
-  throw new Error(error);
 });
 
-function updateMembersList() {
+function updateMembersList(data) {
   const checkedParties = app.partiesSelected;
   const checkedState = app.stateSelected;
 
-  const partiesChanged = Boolean(checkedParties.length);
+  const partiesChanged = checkedParties.length;
   const statesChanged = checkedState !== 'all';
 
-  let filteredMembers = window.data.results[0].members;
+  let filteredMembers = data.results[0].members;
 
   if (partiesChanged) {
     filteredMembers = filterParties(filteredMembers, checkedParties);

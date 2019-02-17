@@ -87,17 +87,17 @@
               <tr>
                 <td>Democrats</td>
                 <td>{{ stats.democrats.total }}</td>
-                <td>{{ roundIfNecessary(stats.democrats.partyPct) + '%' }}</td>
+                <td>{{ stats.democrats.average + '%' }}</td>
               </tr>
               <tr>
                 <td>Republicans</td>
                 <td>{{ stats.republicans.total }}</td>
-                <td>{{ roundIfNecessary(stats.republicans.partyPct) + '%' }}</td>
+                <td>{{ stats.republicans.average + '%' }}</td>
               </tr>
               <tr>
                 <td>Independents</td>
                 <td>{{ stats.independents.total }}</td>
-                <td>{{ roundIfNecessary(stats.independents.partyPct) + '%' }}</td>
+                <td>{{ stats.independents.average + '%' }}</td>
               </tr>
             </tbody>
             <tfoot>
@@ -181,10 +181,9 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/js/bootstrap.min.js"
     integrity="sha384-7aThvCh9TypR7fIc2HV4O/nFMVCBwyIUKL8XCtKE+8xgCgl/PQGuFsvShjr74PBp"
     crossorigin="anonymous"></script>
-  <script src="assets/scripts/data-loader.js"></script>
-  <script src="assets/scripts/house-data-loader.js"></script>
-  <script src="assets/scripts/calc-stats.js"></script>
-  <script src="assets/scripts/display-stats.js"></script>
+  <script src="assets/scripts/congress-request.js"></script>
+  <script src="assets/scripts/house-request.js"></script>
+  <script src="assets/scripts/stats.js"></script>
 </body>
 
 </html>

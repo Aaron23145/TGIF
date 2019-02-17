@@ -3,11 +3,11 @@
 const app = new Vue({
   el: '#app',
   data: {
-    stats: window.stats,
+    stats: null,
     loadingData: true,
   },
   methods: {
-    putData: function () {
+    putData: function (stats) {
       this.loadingData = false;
       this.stats = stats;
     },
@@ -33,15 +33,13 @@ const app = new Vue({
       return this.stats.democrats.total + this.stats.republicans.total + this.stats.independents.total;
     },
     averagePercentage: function () {
-      return this.average(this.stats.democrats.partyPct,
-        this.stats.republicans.partyPct,
-        this.stats.independents.partyPct);
+      return this.average(this.stats.democrats.average,
+        this.stats.republicans.average,
+        this.stats.independents.average);
     },
   },
 });
 
-genStats().then(function () {
-  app.putData();
-}).catch(function (error) {
-  throw new Error(error);
+congressRequest.genStats().then(function (stats) {
+  app.putData(stats);
 });
