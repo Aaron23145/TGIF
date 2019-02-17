@@ -1,6 +1,6 @@
 'use strict';
 
-const app = new Vue({
+const vm = new Vue({
   el: '#app',
   data: {
     stats: null,
@@ -41,5 +41,5 @@ const app = new Vue({
 });
 
 congressRequest.genStats().then(function (stats) {
-  app.putData(stats);
+  vm.putData(stats);
 });

@@ -1,6 +1,6 @@
 'use strict';
 
-const app = new Vue({
+const vm = new Vue({
   el: '#app',
   data: {
     members: [],
@@ -23,15 +23,15 @@ const app = new Vue({
 });
 
 congressRequest.requestData().then(function (data) {
-  app.updateTableData = function() {
-    app.members = updateMembersList(data);
+  vm.updateTableData = function() {
+    vm.members = updateMembersList(data);
   };
-  app.putData();
+  vm.putData();
 });
 
 function updateMembersList(data) {
-  const checkedParties = app.partiesSelected;
-  const checkedState = app.stateSelected;
+  const checkedParties = vm.partiesSelected;
+  const checkedState = vm.stateSelected;
 
   const partiesChanged = checkedParties.length;
   const statesChanged = checkedState !== 'all';
