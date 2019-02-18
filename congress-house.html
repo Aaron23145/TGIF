@@ -154,7 +154,11 @@
       <table v-if="members.length" class="table mt-3">
         <thead class="sticky-head">
           <tr>
-            <th @click="sortByName">Name</th>
+            <th @click="sortByName">
+              Name
+              <i v-if="sortAsc" class="fas fa-caret-up"></i>
+              <i v-if="sortAsc === false" class="fas fa-caret-down"></i>
+            </th>
             <th>Party</th>
             <th>State</th>
             <th>Years in Office</th>
