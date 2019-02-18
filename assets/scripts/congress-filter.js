@@ -7,6 +7,7 @@ const vm = new Vue({
     loadingData: true,
     partiesSelected: [],
     stateSelected: 'all',
+    searchText: '',
   },
   methods: {
     putData: function () {
@@ -32,9 +33,11 @@ congressRequest.requestData().then(function (data) {
 function updateMembersList(data) {
   const checkedParties = vm.partiesSelected;
   const checkedState = vm.stateSelected;
+  const searchText = vm.searchText.trim();
 
   const partiesChanged = checkedParties.length;
   const statesChanged = checkedState !== 'all';
+  const searchChanged = searchText !== '';
 
   let filteredMembers = data.results[0].members;
 
@@ -45,6 +48,10 @@ function updateMembersList(data) {
   if (statesChanged) {
     const stateToFilter = checkedState.toUpperCase();
     filteredMembers = filterStates(filteredMembers, stateToFilter);
+  }
+
+  if (searchChanged) {
+    filteredMembers = filterText(filteredMembers, searchText);
   }
 
   return filteredMembers;
@@ -59,5 +66,11 @@ function filterParties(membersToFilter, parties) {
 function filterStates(membersToFilter, state) {
   return membersToFilter.filter(function (member) {
     return member.state === state;
+  });
+}
+
+function filterText(membersToFilter, text) {
+  return membersToFilter.filter(function (member) {
+    return vm.fullName(member).toLowerCase().includes(text);
   });
 }
