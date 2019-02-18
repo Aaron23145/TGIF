@@ -83,3 +83,9 @@ a:not([href]):not([tabindex]):hover {
 hr {
   border-top: 2px solid grey;
 }
+
+.sticky-head {
+  position: sticky;
+  top: 0;
+  background-color: white;
+}

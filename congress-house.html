@@ -73,80 +73,86 @@
         every state is entitled to at least one representative.
       </p>
 
-      <div class="d-flex align-items-center">
-        Filter by Party:
-        <input @change="updateTableData" v-model="partiesSelected" type="checkbox" id="republican-filter" value="R">
-        <label for="republican-filter">Republican</label>
-        <input @change="updateTableData" v-model="partiesSelected" type="checkbox" id="democrat-filter" value="D">
-        <label for="democrat-filter">Democrat</label>
-        <input @change="updateTableData" v-model="partiesSelected" type="checkbox" id="independent-filter" value="I">
-        <label for="independent-filter">Independent</label>
-        <div class="flex-grow-1 text-right">
-          Filter by State:
-          <select @change="updateTableData" v-model="stateSelected">
-            <option value="all">All</option>
-            <option value="nc">NC</option>
-            <option value="al">AL</option>
-            <option value="la">LA</option>
-            <option value="mi">MI</option>
-            <option value="nv">NV</option>
-            <option value="nj">NJ</option>
-            <option value="mn">MN</option>
-            <option value="az">AZ</option>
-            <option value="pa">PA</option>
-            <option value="ky">KY</option>
-            <option value="ga">GA</option>
-            <option value="tx">TX</option>
-            <option value="ca">CA</option>
-            <option value="oh">OH</option>
-            <option value="fl">FL</option>
-            <option value="ut">UT</option>
-            <option value="ny">NY</option>
-            <option value="tn">TN</option>
-            <option value="or">OR</option>
-            <option value="gu">GU</option>
-            <option value="ia">IA</option>
-            <option value="va">VA</option>
-            <option value="ok">OK</option>
-            <option value="in">IN</option>
-            <option value="il">IL</option>
-            <option value="wv">WV</option>
-            <option value="ma">MA</option>
-            <option value="de">DE</option>
-            <option value="vi">VI</option>
-            <option value="ri">RI</option>
-            <option value="mo">MO</option>
-            <option value="sc">SC</option>
-            <option value="co">CO</option>
-            <option value="ar">AR</option>
-            <option value="ct">CT</option>
-            <option value="nd">ND</option>
-            <option value="md">MD</option>
-            <option value="mt">MT</option>
-            <option value="wa">WA</option>
-            <option value="wi">WI</option>
-            <option value="as">AS</option>
-            <option value="ne">NE</option>
-            <option value="hi">HI</option>
-            <option value="ms">MS</option>
-            <option value="ks">KS</option>
-            <option value="nh">NH</option>
-            <option value="id">ID</option>
-            <option value="nm">NM</option>
-            <option value="wy">WY</option>
-            <option value="me">ME</option>
-            <option value="sd">SD</option>
-            <option value="dc">DC</option>
-            <option value="pr">PR</option>
-            <option value="mp">MP</option>
-            <option value="vt">VT</option>
-            <option value="ak">AK</option>"
-          </select>
+      <div class="mb-2">
+        <label id="filter-state">Filter by State:</label>
+        <select @change="updateTableData" v-model="stateSelected" id="filter-state">
+          <option value="all">All</option>
+          <option value="nc">NC</option>
+          <option value="al">AL</option>
+          <option value="la">LA</option>
+          <option value="mi">MI</option>
+          <option value="nv">NV</option>
+          <option value="nj">NJ</option>
+          <option value="mn">MN</option>
+          <option value="az">AZ</option>
+          <option value="pa">PA</option>
+          <option value="ky">KY</option>
+          <option value="ga">GA</option>
+          <option value="tx">TX</option>
+          <option value="ca">CA</option>
+          <option value="oh">OH</option>
+          <option value="fl">FL</option>
+          <option value="ut">UT</option>
+          <option value="ny">NY</option>
+          <option value="tn">TN</option>
+          <option value="or">OR</option>
+          <option value="gu">GU</option>
+          <option value="ia">IA</option>
+          <option value="va">VA</option>
+          <option value="ok">OK</option>
+          <option value="in">IN</option>
+          <option value="il">IL</option>
+          <option value="wv">WV</option>
+          <option value="ma">MA</option>
+          <option value="de">DE</option>
+          <option value="vi">VI</option>
+          <option value="ri">RI</option>
+          <option value="mo">MO</option>
+          <option value="sc">SC</option>
+          <option value="co">CO</option>
+          <option value="ar">AR</option>
+          <option value="ct">CT</option>
+          <option value="nd">ND</option>
+          <option value="md">MD</option>
+          <option value="mt">MT</option>
+          <option value="wa">WA</option>
+          <option value="wi">WI</option>
+          <option value="as">AS</option>
+          <option value="ne">NE</option>
+          <option value="hi">HI</option>
+          <option value="ms">MS</option>
+          <option value="ks">KS</option>
+          <option value="nh">NH</option>
+          <option value="id">ID</option>
+          <option value="nm">NM</option>
+          <option value="wy">WY</option>
+          <option value="me">ME</option>
+          <option value="sd">SD</option>
+          <option value="dc">DC</option>
+          <option value="pr">PR</option>
+          <option value="mp">MP</option>
+          <option value="vt">VT</option>
+          <option value="ak">AK</option>"
+        </select>
+      </div>
+      <div class="d-flex justify-content-between align-items-center">
+        <div>
+          Filter by Party:
+          <input @change="updateTableData" v-model="partiesSelected" type="checkbox" id="republican-filter" value="R">
+          <label for="republican-filter">Republican</label>
+          <input @change="updateTableData" v-model="partiesSelected" type="checkbox" id="democrat-filter" value="D">
+          <label for="democrat-filter">Democrat</label>
+          <input @change="updateTableData" v-model="partiesSelected" type="checkbox" id="independent-filter" value="I">
+          <label for="independent-filter">Independent</label>
+        </div>
+        <div>
+          <label for="search">Search</label>
+          <input @change="updateTableData" v-model="searchText" type="text" id="search">
         </div>
       </div>
 
       <table v-if="members.length" class="table mt-3">
-        <thead>
+        <thead class="sticky-head">
           <tr>
             <th>Name</th>
             <th>Party</th>
