@@ -8,6 +8,7 @@ const vm = new Vue({
     partiesSelected: [],
     stateSelected: 'all',
     searchText: '',
+    sortAsc: null,
   },
   methods: {
     putData: function () {
@@ -19,6 +20,12 @@ const vm = new Vue({
     },
     updateTableData: function () {
       this.members = [];
+    },
+    sortByName: function () {
+      if (this.sortAsc === null) this.sortAsc = true;
+      else this.sortAsc = !this.sortAsc;
+
+      this.updateTableData();
     },
   },
 });
@@ -34,10 +41,12 @@ function updateMembersList(data) {
   const checkedParties = vm.partiesSelected;
   const checkedState = vm.stateSelected;
   const searchText = vm.searchText.trim();
+  const sortMode = vm.sortAsc;
 
   const partiesChanged = checkedParties.length;
   const statesChanged = checkedState !== 'all';
   const searchChanged = searchText !== '';
+  const sortChanged = sortMode !== null;
 
   let filteredMembers = data.results[0].members;
 
@@ -52,6 +61,19 @@ function updateMembersList(data) {
 
   if (searchChanged) {
     filteredMembers = filterText(filteredMembers, searchText);
+  }
+
+  if (sortChanged) {
+    filteredMembers.sort(function(a, b) {
+      const fullNameA = vm.fullName(a).toLowerCase();
+      const fullNameB = vm.fullName(b).toLowerCase();
+      const multiplier = sortMode ? 1 : -1;
+
+      let comparison = 0;
+      if (fullNameA > fullNameB) comparison = 1 * multiplier;
+      if (fullNameA < fullNameB) comparison = -1 * multiplier;
+      return comparison;
+    });
   }
 
   return filteredMembers;

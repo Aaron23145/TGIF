@@ -151,7 +151,7 @@
       <table v-if="members.length" class="table mt-3">
         <thead class="sticky-head">
           <tr>
-            <th>Name</th>
+            <th @click="sortByName">Name</th>
             <th>Party</th>
             <th>State</th>
             <th>Years in Office</th>
