@@ -16,15 +16,12 @@ class CongressRequest {
         mode: 'cors',
       }).then(response => {
         if (response.status !== 200) {
-          throw new Error('An error has ocurred while trying to fetch data from propublica: 404');
+          throw new Error('An error has ocurred while trying to fetch data from propublica');
         }
-
-        response.json().then(responseData => {
-          this.data = responseData;
-          resolve(responseData);
-        }).catch(error => {
-          throw new Error(error);
-        });
+        return response.json();
+      }).then(responseData => {
+        this.data = responseData;
+        resolve(responseData);
       }).catch(error => {
         throw new Error(error);
       });
