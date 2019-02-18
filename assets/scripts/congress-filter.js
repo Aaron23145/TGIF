@@ -40,7 +40,7 @@ congressRequest.requestData().then(function (data) {
 function updateMembersList(data) {
   const checkedParties = vm.partiesSelected;
   const checkedState = vm.stateSelected;
-  const searchText = vm.searchText.trim();
+  const searchText = vm.searchText.trim().toLowerCase();
   const sortMode = vm.sortAsc;
 
   const partiesChanged = checkedParties.length;
