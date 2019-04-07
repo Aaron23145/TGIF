@@ -1,5 +1,7 @@
 'use strict';
 
+Vue.config.productionTip = false;
+
 const vm = new Vue({
   el: '#app',
   data: {
