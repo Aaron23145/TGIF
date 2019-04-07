@@ -2,6 +2,8 @@
 
 A web site that consumes the [ProPublica Congress API](https://www.propublica.org/datastore/api/propublica-congress-api). It allows you to view members of the congress and filter them in many ways. Also generates statistics based on the same data.
 
+Try it live here: [TGIF on the Github Pages](https://aaron23145.github.io/TGIF/).
+
 ## Features
 
 - Visualization of updated congress data.
