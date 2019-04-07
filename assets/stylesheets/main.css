@@ -94,3 +94,14 @@ hr {
   top: 0;
   background-color: white;
 }
+
+.invalid-device {
+  display: flex;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  color: #860000;
+  font-size: 1.5rem;
+  text-align: center;
+  margin: 0 20px;
+}

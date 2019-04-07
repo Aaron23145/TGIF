@@ -13,7 +13,7 @@
 </head>
 
 <body>
-  <div class="container mt-5">
+  <div class="container mt-5 d-none d-lg-block">
     <header>
       <div class="d-flex justify-content-between align-items-end mb-3">
         <div class="d-flex align-items-center">
@@ -59,7 +59,7 @@
 
     <section class="content">
       <div class="row">
-        <div class="col-8">
+        <div class="col-12 col-xl-8">
           <h2>About Us</h2>
           <p>
             Openness, accountability, and honesty define government transparency. In a free society, transparency is
@@ -128,7 +128,7 @@
           </p>
         </div>
         <div class="col">
-          <img class="side-image" src="assets/images/home.svg" alt="" width="250">
+          <img class="side-image d-none d-xl-inline" src="assets/images/home.svg" alt="" width="250">
         </div>
       </div>
     </section>
@@ -136,6 +136,12 @@
     <footer class="text-center my-3 py-3">
       © 2016 TGIF | All Rights Reserved
     </footer>
+  </div>
+  <div class="d-lg-none invalid-device">
+    <span>
+      This website does not support screens that are not desktop-sized. Please, enter with a device that has a larger
+    screen.
+    </span>
   </div>
 
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
